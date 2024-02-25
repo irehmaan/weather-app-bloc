@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../../model/weather_model.dart';
 
@@ -12,7 +13,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   WeatherBloc() : super(WeatherInitial()) {
     on<FetchWeatherData>((event, emit) async {
       try {
-        final _apiKey = '38f80bcc6aa70705733e69ba245a7798';
+        final _apiKey = dotenv.env['OPENWEATHER_API_KEY'];
         final Response response = await _dio.get(
             'https://api.openweathermap.org/data/2.5/weather',
             queryParameters: {
