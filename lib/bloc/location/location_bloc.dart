@@ -8,10 +8,10 @@ part 'location_state.dart';
 class LocationBloc extends Bloc<LocationEvent, LocationState> {
   final Location location = Location();
   LocationBloc() : super(LocationInitial()) {
-    on<GetLocationEvent>(_mapGetLocationToState);
+    on<GetLocationEvent>(_GetLocationToState);
   }
 
-  Future<void> _mapGetLocationToState(
+  Future<void> _GetLocationToState(
       GetLocationEvent event, Emitter<LocationState> emit) async {
     try {
       bool serviceEnabled = await location.serviceEnabled();
